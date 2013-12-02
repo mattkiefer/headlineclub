@@ -1,0 +1,290 @@
+/*
+Theme Name:     2013 Blue
+Theme URI:      http://noscope.com/2013/twenty-thirteen-make-it-yours/
+Description:    Blue color scheme for Twenty Thirteen.
+Author:         Joen Asmussen
+Author URI:     http://noscope.com
+Template:       twentythirteen
+Version:        1.0.8
+License: 		GNU General Public License v2 or later
+License URI: 	http://www.gnu.org/licenses/gpl-2.0.html
+Tags: blue, green, light, one-column, two-columns, right-sidebar, flexible-width, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, translation-ready
+Text Domain: twentythirteen
+
+Please fork this theme. Please modify it. Please make it your own. Then share it back with the community.
+
+2013 Blue WordPress theme, Copyright (C) 2013 Joen Asmussen.
+2013 Blue WordPress theme is licensed under the GPL.
+*/
+
+
+/**
+ * New header 
+ */
+
+body .site-header {
+	background-size: 1600px auto;
+	color: #202225;
+}
+
+
+/**
+ * Standard
+ */
+
+body {
+	color: #202225;
+}
+
+a:visited {
+	color: #9c1f9e;
+}
+
+.comment-author .fn, .comment-author .url, .comment-reply-link, .comment-reply-login {
+	color: #004c7c;
+}
+
+a:active,
+a:hover {
+	color: #1c78b0;
+}
+
+.entry-meta,
+.entry-meta a,
+.entry-content a,
+.entry-summary a {
+	color: #004c7c;
+}
+
+.entry-meta a:hover {
+	color: #004c7c;
+}
+
+.entry-title a, .site-header .home-link {
+	color: #202225;
+}
+
+.entry-title a:hover {
+	color: #202225;
+}
+
+a {
+	color: #004c7c;
+}
+
+.form-allowed-tags, .form-allowed-tags code {
+	color: #333;
+}
+
+.comment-meta a {
+	color: #a2a2a2;
+}
+
+input, textarea {
+	border: 2px solid #a2a2a2;
+}
+
+.comment-respond {
+	background-color: #faf9f7;
+}
+
+input[type="submit"], input[type="button"], input[type="reset"] {
+	border-color: #57adb2;
+	background: #72c6ca;
+}
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover {
+	border-color: #48a4a9;
+	background: #57b1b6;
+}
+input[type="submit"]:active, input[type="button"]:active, input[type="reset"]:active {
+	border-color: #48a4a9;
+	background: #57b1b6;
+}
+
+.nav-menu .current_page_item > a, .nav-menu .current_page_ancestor > a, .nav-menu .current-menu-item > a, .nav-menu .current-menu-ancestor > a {
+	color: #004c7c;
+}
+
+.archive-header, .page-header {
+	background: #a7c7d7;
+}
+
+
+/**
+ * Menu, Links, Asides, Chat, Paging, Footer, 404
+ */
+
+.navbar, .format-link, .format-aside, .paging-navigation, .site-footer, .post-navigation {
+	background-color: #f4f6f8;
+}
+
+.nav-menu .sub-menu,
+.nav-menu .children {
+	border-color: #f4f6f8;
+}
+
+.error404 .page-title:before {
+	color: #437d9e;
+} 
+
+.error404 .page-wrapper {
+	background-color: #f4f6f8;
+}
+
+.format-aside .entry-meta,
+.format-aside .entry-meta a,
+.format-aside .entry-title a,
+.format-aside .entry-content a,
+.format-aside .entry-summary a,
+.format-link .entry-meta,
+.format-link .entry-meta a,
+.format-link .entry-title a,
+.format-link .entry-content a,
+.format-link .entry-summary a {
+	color: #004c7c;
+}
+
+.nav-menu li:hover > a, .nav-menu li a:hover, .nav-menu .sub-menu, .nav-menu .children {
+	background-color: #031b2a;
+}
+
+ul.nav-menu ul a:hover,
+.nav-menu ul ul a:hover,
+.toggled-on .nav-menu li a:hover, .toggled-on .nav-menu ul a:hover {
+	background-color: #133d58;
+}
+
+.blog .format-link:first-of-type, .single .format-link:first-of-type, .format-link + .format-aside, .format-link + .format-link, .format-aside + .format-aside {
+	box-shadow: inset 0px 2px 2px rgba(0,0,0, 0.1);
+}
+
+.blog .format-aside:first-of-type, .single .format-aside:first-of-type, .format-aside + .format-aside, .format-aside + .format-link, .format-link + .format-aside {
+	box-shadow: inset 0px 2px 2px rgba(0,0,0, 0.1);
+}
+
+.site-footer a, .navigation a {
+	color: #ce5343;
+}
+
+.site-footer a:hover, .navigation a:hover {
+	color: #d7422f;
+}
+
+.paging-navigation .meta-nav {
+	background-color: #ce5343;
+}
+
+.paging-navigation a:hover .meta-nav {
+	background-color: #d7422f;
+}
+
+
+/**
+ * Galleries
+ */
+
+.format-gallery {
+	background-color: #a7c7d7;
+}
+
+.format-gallery .entry-meta,
+.format-gallery .entry-meta a,
+.format-gallery .entry-content a,
+.format-gallery .entry-summary a {
+	color: #031b2a;
+}
+
+
+/**
+ * Quotes
+ */
+
+.format-quote, .site-footer .sidebar-container {
+	background-color: #031b2a;
+	color: #fff;
+}
+
+.format-quote .entry-meta,
+.format-quote .entry-meta a,
+.format-quote .entry-content a,
+.format-quote .entry-summary a {
+	color: #7aaac2;
+}
+
+
+/**
+ * Status
+ */
+
+.format-status, .paging-navigation .meta-nav {
+	background-color: #ce5343;
+	color: #fff;
+}
+
+
+/**
+ * Video, Audio
+ */
+
+.format-video, .format-audio {
+	background-color: #437d9e;
+	color: #fff;
+}
+
+.format-video .entry-meta,
+.format-video .entry-meta a,
+.format-video .entry-content a,
+.format-video .entry-summary a,
+.format-audio .entry-meta,
+.format-audio .entry-meta a,
+.format-audio .entry-content a,
+.format-audio .entry-summary a {
+	color: #fff;
+}
+
+.format-video .entry-title a,
+.format-audio .entry-title a,
+.format-video .entry-title a:hover,
+.format-audio .entry-title a:hover {
+	color: #202225;
+}
+
+.hentry .mejs-mediaelement, .hentry .mejs-container .mejs-controls {
+	background: #202225;
+}
+
+
+/**
+ * Chat
+ */
+
+.format-chat {
+	background-color: #92bcd5;
+}
+
+.format-chat .entry-meta,
+.format-chat .entry-meta a,
+.format-chat .entry-content a,
+.format-chat .entry-summary a {
+	color: #004c7c;
+}
+
+
+/**
+ * Widgets
+ */
+
+.widget {
+	background: #f4f6f8;
+}
+
+.widget a, .site-footer .widget a {
+	color: #004c7c;
+}
+
+.site-footer .sidebar-container {
+	background: #031b2a;
+}
+
+
+
