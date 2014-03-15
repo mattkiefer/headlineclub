@@ -5,7 +5,7 @@ Description:    Blue color scheme for Twenty Thirteen.
 Author:         Joen Asmussen
 Author URI:     http://noscope.com
 Template:       twentythirteen
-Version:        1.0.8
+Version:        1.0.9
 License: 		GNU General Public License v2 or later
 License URI: 	http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blue, green, light, one-column, two-columns, right-sidebar, flexible-width, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, translation-ready
@@ -287,4 +287,18 @@ ul.nav-menu ul a:hover,
 }
 
 
+/**
+ * Post pagination
+ */
+
+#content .format-status .entry-content .page-links a, #content .format-gallery .entry-content .page-links a, #content .format-chat .entry-content .page-links a, #content .format-quote .entry-content .page-links a, #content .entry-content .page-links a {
+	background: #004c7c;
+	border: 1px solid #004c7c;
+	color: #fff;
+}
+
+#content .format-gallery .entry-content .page-links a:hover, #content .format-audio .entry-content .page-links a:hover, #content .format-status .entry-content .page-links a:hover, #content .format-video .entry-content .page-links a:hover, #content .format-chat .entry-content .page-links a:hover, #content .format-quote .entry-content .page-links a:hover, #content .entry-content .page-links a:hover {
+	background: #fff;
+	color: #004c7c;
+}
 
