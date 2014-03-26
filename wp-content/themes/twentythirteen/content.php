@@ -32,9 +32,10 @@
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
-	<?php if ( is_search() ) : // Only display Excerpts for Search ?>
+	<?php if (is_search() || is_author() ||  is_tag() ||  is_archive()  || is_home () ): ?>
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
+                <a href="<?php the_permalink();?>">Read more</a>
 	</div><!-- .entry-summary -->
 	<?php else : ?>
 	<div class="entry-content">
