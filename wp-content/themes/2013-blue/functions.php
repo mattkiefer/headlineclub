@@ -1,4 +1,19 @@
 <?php
+
+add_filter( 'wp_nav_menu_items', 'wpsites_add_logo_nav_menu', 10, 2 );
+
+function wpsites_add_logo_nav_menu( $menu, stdClass $args ){
+
+    if ( 'primary' != $args->theme_location )
+        return $menu;
+
+
+    $menu .= sprintf( '<li id="nav-logo">%s</li>', __( '<a href="http://www.example.dev/wp-content/uploads/2013/12/zapier.jpg"><img src="http://prod.headlineclub.org/wp-content/themes/twentythirteen/images/logos/chc_logo_56w_45h.png" alt="zapier" class="alignnone size-full wp-image-37427" /></a>' ) );
+
+    return $menu;
+
+}
+
 /**
  * Add Custom Header
  */
