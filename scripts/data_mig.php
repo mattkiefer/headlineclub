@@ -5,13 +5,13 @@
 require('./creds.php');
 
 // get data?
-$get_d = True;
+$get_d = False;
 
 // transform data?
-$trans_d = True;
+$trans_d = False;
 
 // write to wp?
-$write_wp = True;
+$write_wp = False;
 
 // connection to wp db
 $wp_conn = mysql_connect('localhost',$creds['wdb'],$creds['wpw']);
@@ -50,6 +50,8 @@ $whoami = exec('whoami');
 // config this
 $dir = 'prod/';
 $path = '/home/' . $whoami . '/public_html/' . $dir;
+
+update_wp_db($wp_conn);
 
 // END CONFIGURATION
 
@@ -270,5 +272,21 @@ function write_to_wp($write, $transform_path, $cats) {
     }
 }
 
+function update_wp_db($wp_conn) {
+	// update wp url stuff
+	// get connection
+	echo 'update_wp_db()';
+       
+        $wp_db = mysql_select_db($creds['wdb'],$wp_conn);
+ 
+	// report success 
+	if (!$wp_conn) {
+	    die ('could not connect: ' . mysql_error());
+	} 	
+	echo 'Connected successfully!';
+
+	$sql = mysql_query("update iug_options set option_value = 'http://headlineclub.org' where option_name in ('siteurl');");
+	mysql_close($wp_conn);
+}
 
 ?>
