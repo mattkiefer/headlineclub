@@ -17,6 +17,24 @@ Please fork this theme. Please modify it. Please make it your own. Then share it
 2013 Blue WordPress theme is licensed under the GPL.
 */
 
+/*
+ * CHC nav bar overrides to accomodate logo
+ *
+*/
+
+#nav-logo {
+    float: left;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    margin-left: 10px;
+    margin-right: -10px;
+}
+
+.toggled-on #nav-logo {
+    display: none;
+}
+
+
 
 /**
  * New header 
