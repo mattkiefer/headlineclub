@@ -132,10 +132,21 @@ function trans_data($trans, $file_path, $transform_path) {
 	$transform_file_str = str_replace($eol,$eol . "\n",$transform_file_str);
 	$transform_file_str = str_replace("metadata2","metadata\n2",$transform_file_str);
 
+        $search = array(chr(93), 
+                    chr(146), 
+                    chr(147), 
+                    chr(148), 
+                    chr(151)); 
+        $replace = array("'", 
+                     "'", 
+                     '"', 
+                     '"', 
+                     '-'); 
+        # $transform_file_str = str_replace($search, $replace, $transform_file_str); 
+
 	// clean up for ms chars
 	$transform_file_str = iconv('latin1', 'ASCII//TRANSLIT', $transform_file_str); 
-	} 
-
+	}  
 	// put the string back in transformed file
 	file_put_contents($transform_path,$transform_file_str); 
 }
