@@ -147,16 +147,15 @@ function trans_data($trans, $file_path, $transform_path) {
 
 function bad_chars($data) {
         $replace_find = array(
-                              '-' => chr(0x85),
-                              '\'' => chr(0x91),
-                              '\'' => chr(0x92),
-                              // this is a hack, and one reason why php sucks
-                              '\'\'' => chr(0x94),
-                              '"' => chr(0x93),
-                              '' => chr(0x96),
-                              '--' => chr(0x97),
+                              chr(0x85) => '-',
+                              chr(0x91) => '\'',
+                              chr(0x92) => '\'',
+			      chr(0x94) => '"',
+                              chr(0x93) => '"',
+                              chr(0x96) => '',
+                              chr(0x97) => '--',
                              );
-        foreach ($replace_find as $replace => $find) {
+        foreach ($replace_find as $find => $replace) {
             $data = str_replace($find, $replace, $data);
         }
         //$data = iconv('latin1', 'ASCII//TRANSLIT', $data);
