@@ -1,0 +1,16 @@
+/*
+ Theme Name:   Chicago Headline Club
+ Theme URI:    http://headlineclub.org/wp-content/themes/chc
+ Description:  child theme of twentythirteen
+ Author:       Matt Kiefer
+ Author URI:   http://matthewlkiefer.com
+ Template:     twentythirteen
+ Version:      1.0.0
+ Tags:         responsive-layout, accessibility-ready
+ Text Domain:  
+*/
+
+
+li#menu-item-36: {
+    background: url(http://prod.headlineclub.org/wp-content/themes/twentythirteen/images/logos/chc_logo_56w_45h.png) no-repeat center;
+}

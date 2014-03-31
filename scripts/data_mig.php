@@ -48,7 +48,7 @@ $cats = array(
 
 $whoami = exec('whoami');
 // config this
-$dir = 'chc/';
+$dir = 'prod/';
 $path = '/home/' . $whoami . '/public_html/' . $dir;
 
 update_wp_db($wp_conn);
@@ -81,7 +81,7 @@ function get_data($get, $file_path,$creds) {
     echo 'get_data()';
     if ($get == True) {
         // get connection
-        $j_conn = mysql_connect('headlineclub.org',$creds['jdb'],$creds['jpw']);
+        $j_conn = mysql_connect('localhost',$creds['jdb'],$creds['jpw']);
         $j_db = mysql_select_db($creds['jdb'],$j_conn);       
  
         // report success 
@@ -147,16 +147,15 @@ function trans_data($trans, $file_path, $transform_path) {
 
 function bad_chars($data) {
         $replace_find = array(
-                              '-' => chr(0x85),
-                              '\'' => chr(0x91),
-                              '\'' => chr(0x92),
-                              // this is a hack, and one reason why php sucks
-                              '\'\'' => chr(0x94),
-                              '"' => chr(0x93),
-                              '' => chr(0x96),
-                              '--' => chr(0x97),
+                              chr(0x85) => '-',
+                              chr(0x91) => '\'',
+                              chr(0x92) => '\'',
+			      chr(0x94) => '"',
+                              chr(0x93) => '"',
+                              chr(0x96) => '',
+                              chr(0x97) => '--',
                              );
-        foreach ($replace_find as $replace => $find) {
+        foreach ($replace_find as $find => $replace) {
             $data = str_replace($find, $replace, $data);
         }
         //$data = iconv('latin1', 'ASCII//TRANSLIT', $data);
