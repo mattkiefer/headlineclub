@@ -8,10 +8,10 @@ require('./creds.php');
 $get_d = False;
 
 // transform data?
-$trans_d = False;
+$trans_d = True;
 
 // write to wp?
-$write_wp = False;
+$write_wp = True;
 
 // connection to wp db
 $wp_conn = mysql_connect('localhost',$creds['wdb'],$creds['wpw']);
@@ -26,29 +26,29 @@ $transform_path="./jdata_trans.csv";
 $cats = array(
             array(
                 'id' => NULL,
-                'name' => 'jobfile',
+                'name' => 'JobFile',
                 'sterm' => 'jobfile',),
             array(
                 'id' => NULL,
-                'name' => 'lisagor',
+                'name' => 'Lisagor',
                 'sterm' => 'lisagor',),
             array(
                 'id' => NULL,
-                'name' => 'foia fest',
+                'name' => 'FOIA Fest',
                 'sterm' => 'foia fest',),
             array(
                 'id' => NULL,
-                'name' => 'burger nite',
+                'name' => 'Burger Nite',
                 'sterm' => 'burger',),
             array(
                 'id' => NULL,
-                'name' => 'minutes',
+                'name' => 'Minutes',
                 'sterm' => 'minutes',)
 ); 
 
 $whoami = exec('whoami');
 // config this
-$dir = 'prod/';
+$dir = 'chc/';
 $path = '/home/' . $whoami . '/public_html/' . $dir;
 
 update_wp_db($wp_conn);
@@ -81,7 +81,7 @@ function get_data($get, $file_path,$creds) {
     echo 'get_data()';
     if ($get == True) {
         // get connection
-        $j_conn = mysql_connect('localhost',$creds['jdb'],$creds['jpw']);
+        $j_conn = mysql_connect('headlineclub.org',$creds['jdb'],$creds['jpw']);
         $j_db = mysql_select_db($creds['jdb'],$j_conn);       
  
         // report success 
@@ -109,11 +109,8 @@ function get_data($get, $file_path,$creds) {
         fputcsv($file,$headers);
         while ($row = mysql_fetch_row($sql)) {
             fputcsv($file,array_values($row));
-            //var_dump($row[0]);
-
-        mysql_close($j_conn);
-
         }
+        mysql_close($j_conn);
     }
 }
 
@@ -132,14 +129,40 @@ function trans_data($trans, $file_path, $transform_path) {
 	$transform_file_str = str_replace($eol,$eol . "\n",$transform_file_str);
 	$transform_file_str = str_replace("metadata2","metadata\n2",$transform_file_str);
 
-	// clean up for ms chars
-	$transform_file_str = iconv('latin1', 'ASCII//TRANSLIT', $transform_file_str); 
-	} 
+        /*
+        $scrub = array('"' => chr(0x93),
+                      );  
 
+        foreach ($scrub as $replace => $search) {
+            $transform_file_str = str_replace($search, $replace, $transform_file_str); 
+        }
+        */
+	// clean up for ms chars
+	//$transform_file_str = iconv('latin1', 'ASCII//TRANSLIT', $transform_file_str); 
+	}  
 	// put the string back in transformed file
 	file_put_contents($transform_path,$transform_file_str); 
 }
 
+
+function bad_chars($data) {
+        $replace_find = array(
+                              '-' => chr(0x85),
+                              '\'' => chr(0x91),
+                              '\'' => chr(0x92),
+                              // this is a hack, and one reason why php sucks
+                              '\'\'' => chr(0x94),
+                              '"' => chr(0x93),
+                              '' => chr(0x96),
+                              '--' => chr(0x97),
+                             );
+        foreach ($replace_find as $replace => $find) {
+            $data = str_replace($find, $replace, $data);
+        }
+        //$data = iconv('latin1', 'ASCII//TRANSLIT', $data);
+        $data = iconv('latin1', 'UTF-8', $data);
+        return $data;
+}
 
 function delete_wp_posts($write_wp, $wp_conn) {
 	if ($write_wp == True) {
@@ -207,7 +230,7 @@ function cat_array($fulltext, $cats) {
     // loop through each category array and see which search terms match
     $cat_list = array();
     foreach ($cats as $cat) {
-        if (stristr($fulltext,$cat['sterm']) !== false) {
+        if (stristr($fulltext,$cat['sterm']) !== False) {
 	    $cat_list[] = $cat['id'];
         }
     }
@@ -239,7 +262,14 @@ function write_to_wp($write, $transform_path, $cats) {
 	    if (!$header) $header = $row;
 	    // get data
 	    else $data = array_combine($header,$row);
-	    
+	    $clean_data = array();
+
+            foreach($data as $key => $datum) {
+                $datum = bad_chars($datum);
+                $clean_data[$key] = $datum;
+            }
+            $data = $clean_data;
+            //if ($count==4) die;
             // enter wordpress
 	    // joomla headers for reference: 
 	    // id,title,alias,title_alias,introtext,fulltext,state,sectionid,mask,catid,created,created_by,created_by_alias,modified,modified_by,checked_out,checked_out_time,publish_up,publish_down,images,urls,attribs,version,parentid,ordering,metakey,metadesc,access,hits,metadata
