@@ -48,7 +48,7 @@ $cats = array(
 
 $whoami = exec('whoami');
 // config this
-$dir = 'prod/';
+$dir = 'chc/';
 $path = '/home/' . $whoami . '/public_html/' . $dir;
 
 update_wp_db($wp_conn);
@@ -224,6 +224,13 @@ function wordlimit($string, $length = 50, $ellipsis = "...") {
 	       return $string; 
 } 
 
+function img_src($text) {
+    $old_img = 'src="images/';
+    $new_img = 'src="http://headlineclub.org/images/';
+    $text = str_replace($old_img,$new_img,$text);
+    return $text;
+}
+
 
 function cat_array($fulltext, $cats) {
     // loop through each category array and see which search terms match
@@ -281,7 +288,9 @@ function write_to_wp($write, $transform_path, $cats) {
 		$fulltext = $data["fulltext"];
 	    }
             $alltext = $fulltext . $data["title"];    
-	    $introtext = wordlimit($fulltext);     
+	    $introtext = wordlimit($fulltext);
+            $introtext = img_src($introtext);
+            $fulltext = img_src($fulltext);     
 	    // todo strip html, except maybe first image?
 	    $cat_array = cat_array($alltext, $cats);
 	    $post = array(
