@@ -1,6 +1,76 @@
 <?php
 
+
+function get_header_img_cap() {
+    $header_data = get_theme_mod('header_image_data');
+    $header_array = (array) $header_data;
+    $attachment_id = $header_array["attachment_id"];
+    $attachment = get_post( $attachment_id ); 
+    $header_array =  array(
+        'alt' => get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ),
+        'caption' => $attachment->post_excerpt,
+        'description' => $attachment->post_content,
+        'href' => get_permalink( $attachment->ID ),
+        'src' => $attachment->guid,
+        'title' => $attachment->post_title
+    );
+    echo $header_array['caption'];
+    
+}
+
 add_filter( 'wp_nav_menu_items', 'wpsites_add_logo_nav_menu', 10, 2 );
+
+
+/*
+ *
+ * START IMG CAP REGISTER
+ *
+ */
+
+
+function mytheme_customize_register( $wp_customize ) {
+    //All our sections, settings, and controls will be added here
+
+    $wp_customize->add_setting( 'img_cap_textcolor' , array(
+        'default'     => '#000000',
+        'transport'   => 'refresh',
+    ) );
+
+    $wp_customize->add_section( 'img_cap' , array(
+    'title'      => __( 'Image caption', 'chc' ),
+    'priority'   => 30,
+) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'img_cap_textcolor', array(
+	'label'      => __( 'Image Caption Color', 'chc' ),
+	'section'    => 'your_section_id',
+	'settings'   => 'your_setting_id',
+            ) 
+        ) 
+    );
+
+}
+
+add_action( 'customize_register', 'mytheme_customize_register' );
+
+function mytheme_customize_css()
+{
+    ?>
+         <style type="text/css">
+             h3.header-cap { color:#ffffff; text-align: right; font-size: 12px; }
+             /*h3.header-cap { color:<?php echo get_theme_mod('img_cap_textcolor'); ?>; }*/
+         </style>
+    <?php
+}
+add_action( 'wp_head', 'mytheme_customize_css');
+
+
+/*
+ *
+ * END IMG CAP REGISTER 
+ *
+ */
+
 
 function wpsites_add_logo_nav_menu( $menu, stdClass $args ){
 

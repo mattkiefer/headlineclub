@@ -45,6 +45,16 @@ h1 {
     color: #031b2a;
 }
 
+/**
+ *
+ * Header image caption
+ *
+*/
+
+h3 .header-cap {
+        font: 100 italic 24px "Source Sans Pro", Helvetica, sans-serif;
+        margin: 0;
+}
 
 /**
  * New header 
