@@ -29,6 +29,7 @@ while pg_no < threshold:
         page = urllib2.urlopen(fullurl)
         time.sleep(5)
         pagetxt = page.read()
+        # this re search only works for recent posts. it derives url structure from a printer-friendly version link
         urlgroups = re.search(r'(<a href=\"/component/content/article/3-default/)(.*)(\.pdf)',pagetxt)
         urlslug = urlgroups.group(2)
         jurl = 'http://headlineclub.org/component/content/article/' + urlslug + '.html'
