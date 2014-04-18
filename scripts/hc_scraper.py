@@ -9,9 +9,9 @@ this scraper is a utility to try to map old joomla urls to joomla content ids
 theoretically this could help create redirects for old urls to new wordpress urls, 
 if the ingestion script were modified to map the old url to new url at import by inspecting the ids 
 
-alas, i'm lazy and not interested writing much more php for ingestion.py
-plus, joomla url structures and page source contents have varied over time, making this overkill for low traffic site
-with good search
+alas, i'm lazy and not interested writing much more php for data_mig.php
+plus, joomla url structures and page source contents have varied over time, making this difficult/overkill 
+for a low traffic site with good search capability. ... sorry!
 """
 
 pg_no = 1
