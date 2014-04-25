@@ -5,7 +5,7 @@
 require('./creds.php');
 
 // get data?
-$get_d = False;
+$get_d = True;
 
 // transform data?
 $trans_d = True;
@@ -48,7 +48,7 @@ $cats = array(
 
 $whoami = exec('whoami');
 // config this
-$dir = 'chc/';
+$dir = 'prod/';
 $path = '/home/' . $whoami . '/public_html/' . $dir;
 
 update_wp_db($wp_conn);

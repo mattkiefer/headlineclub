@@ -2,3 +2,4 @@ wp-config.php
 scripts/creds.php
 wp-content/uploads/*
 error_log
+data

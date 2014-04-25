@@ -57,7 +57,7 @@ function mytheme_customize_css()
 {
     ?>
          <style type="text/css">
-             h3.header-cap { color:#ffffff; text-align: right; font-size: 12px; }
+             h3.header-cap { color:#ffffff; text-align: right; font-size: 12px; margin: 0px;}
              /*h3.header-cap { color:<?php echo get_theme_mod('img_cap_textcolor'); ?>; }*/
          </style>
     <?php
