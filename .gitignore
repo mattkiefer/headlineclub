@@ -1,5 +1,5 @@
 wp-config.php
 scripts/creds.php
-wp-content/uploads/*
+wp-content/uploads/
 error_log
 data
